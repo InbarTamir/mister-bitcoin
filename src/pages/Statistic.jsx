@@ -14,7 +14,7 @@ export class Statistic extends Component {
     transaction = {name: transaction.name, desc: transaction.description, values: transaction.values?.map(value => value.y)}
 
     let marketPrice = await bitcoinService.getMarketPrice() || {}
-    marketPrice = {name: marketPrice.name, desc: marketPrice.description, values: marketPrice.values.map(value => value.y)}
+    marketPrice = {name: marketPrice.name, desc: marketPrice.description, values: marketPrice.values?.map(value => value.y)}
     
     // let tradeVolume = await bitcoinService.getTradeVolume()
     // tradeVolume = {name: tradeVolume.name, values: tradeVolume.data.values.map(value => value.y)}
