@@ -5,6 +5,7 @@ import { bitcoinService } from '../services/bitcoin.service'
 import { userService } from '../services/user.service'
 import coinsIcon from '../assets/imgs/coins.png'
 import bitcoinIcon from '../assets/imgs/bitcoin.png'
+import { MoveList } from '../cmps/MoveList'
 
 export class HomePage extends Component {
   state = {
@@ -23,6 +24,7 @@ export class HomePage extends Component {
         <h2>Hello { this.state.user.name }!</h2>
         <p><img src={ coinsIcon } /> Coins: { this.state.user.coins }</p>
         <p><img src={ bitcoinIcon } /> BTC: { this.state.rate }</p>
+        <MoveList title="Your last 3 moves" moves={this.state.user.moves.slice(0, 3)} />
       </section>)
     )
   }

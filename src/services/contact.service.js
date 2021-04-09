@@ -1,3 +1,5 @@
+import { utilService } from './util.service'
+
 export const contactService = {
   getContacts,
   getContactById,
@@ -183,7 +185,7 @@ function _updateContact(contact) {
 
 function _addContact(contact) {
   return new Promise((resolve, reject) => {
-    contact._id = _makeId()
+    contact._id = utilService.makeId()
     contacts.push(contact)
     resolve(contact)
   })
@@ -204,15 +206,4 @@ function filter(term) {
       contact.phone.toLocaleLowerCase().includes(term) ||
       contact.email.toLocaleLowerCase().includes(term)
   })
-}
-
-
-
-function _makeId(length = 10) {
-  var txt = ''
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-  for (var i = 0; i < length; i++) {
-    txt += possible.charAt(Math.floor(Math.random() * possible.length))
-  }
-  return txt
 }
