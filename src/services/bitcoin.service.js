@@ -13,15 +13,23 @@ function getRate(coins = 0) {
 }
 
 async function getMarketPrice() {
-  // const res = await axios.get('https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true')
-  // storageService.store('market_price', res.data)
-  return Promise.resolve(storageService.load('market_price'))
+  let marketPrice = storageService.load('market_price')
+  if (!marketPrice) {
+    const res = await axios.get('https://api.blockchain.info/charts/market-price?timespan=5months&format=json&cors=true')
+    storageService.store('market_price', res.data)
+    marketPrice = res.data
+  }
+  return Promise.resolve(marketPrice)
 }
 
 async function getConfirmedTransactions() {
-  // const res = await axios.get('https://api.blockchain.info/charts/trade-volume?timespan=5months&format=json&cors=true')
-  // storageService.store('trade_volume', res.data)
-  return Promise.resolve(storageService.load('confirmed_transactions'))
+  let transaction = storageService.load('confirmed_transactions')
+  if (!transaction) {
+    const res = await axios.get('https://api.blockchain.info/charts/trade-volume?timespan=5months&format=json&cors=true')
+    storageService.store('confirmed_transactions', res.data)
+    transaction = res.data
+  }
+  return Promise.resolve(res.data)
 }
 // const res = await axios.get('https://api.blockchain.info/charts/avg-block-size?timespan=5months&format=json&cors=true')
 // storageService.store('confirmed_transactions', res.data)
