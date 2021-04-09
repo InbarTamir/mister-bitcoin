@@ -29,10 +29,9 @@ async function getConfirmedTransactions() {
     storageService.store('confirmed_transactions', res.data)
     transaction = res.data
   }
-  return Promise.resolve(res.data)
+  return Promise.resolve(transaction)
 }
 // const res = await axios.get('https://api.blockchain.info/charts/avg-block-size?timespan=5months&format=json&cors=true')
-// storageService.store('confirmed_transactions', res.data)
 
 async function getTradeVolume() {
   // return Promise.resolve(storageService.load('trade_volume'))
