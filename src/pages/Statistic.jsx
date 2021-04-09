@@ -10,10 +10,10 @@ export class Statistic extends Component {
   }
 
   async componentDidMount() {
-    let transaction = await bitcoinService.getConfirmedTransactions()
+    let transaction = await bitcoinService.getConfirmedTransactions() || {}
     transaction = {name: transaction.name, desc: transaction.description, values: transaction.values.map(value => value.y)}
 
-    let marketPrice = await bitcoinService.getMarketPrice()
+    let marketPrice = await bitcoinService.getMarketPrice() || {}
     marketPrice = {name: marketPrice.name, desc: marketPrice.description, values: marketPrice.values.map(value => value.y)}
     
     // let tradeVolume = await bitcoinService.getTradeVolume()
